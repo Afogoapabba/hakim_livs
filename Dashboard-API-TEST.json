@@ -1,0 +1,997 @@
+{
+	"info": {
+		"_postman_id": "209c1b0a-0ec2-48db-9b91-d31f6fa27757",
+		"name": "Dashboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25144556",
+		"_collection_link": "https://grey-spaceship-810448.postman.co/workspace/Grupp_5_Hakim~ac4809e1-3354-41f8-a7ec-8e53f3bf6dbc/collection/25144556-209c1b0a-0ec2-48db-9b91-d31f6fa27757?action=share&source=collection_link&creator=25144556"
+	},
+	"item": [
+		{
+			"name": "Billboards",
+			"item": [
+				{
+					"name": "Post_billboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"responseBody = pm.response.json(); // Assuming the response is in JSON format\r",
+									"\r",
+									"if (responseBody && responseBody.id) {\r",
+									"    // Set the value of a variable named \"idVariable\" to the \"id\" from the response\r",
+									"    pm.environment.set('billboard', responseBody.id);\r",
+									"} else {\r",
+									"    console.error('Response does not contain a valid \"id\".');\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomProduct}}\",\r\n    \"img\": \"bootsURL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/billboards",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"billboards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_billboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/billboards/{{billboard}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"billboards",
+								"{{billboard}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_billboards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}/billboards",
+							"host": [
+								"{{hakim_livs}}"
+							],
+							"path": [
+								"billboards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch_billboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomProduct}}\",\r\n    \"img\": \"bootsURL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/billboards/{{billboard}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"billboards",
+								"{{billboard}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_billboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/billboards/{{billboard}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"billboards",
+								"{{billboard}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Post_category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"responseBody = pm.response.json(); // Assuming the response is in JSON format\r",
+									"\r",
+									"if (responseBody && responseBody.id) {\r",
+									"    // Set the value of a variable named \"idVariable\" to the \"id\" from the response\r",
+									"    pm.environment.set('category', responseBody.id);\r",
+									"} else {\r",
+									"    console.error('Response does not contain a valid \"id\".');\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"{{$randomDepartment}}\", \"billboardId\": \"{{billboard}}\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/categories",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/categories/{{category}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"categories",
+								"{{category}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/categories",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch_category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"name\": \"newvalue\",\r\n    \"billboardId\" : \"{{billboard}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/categories/{{category}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"categories",
+								"{{category}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/categories/{{category}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"categories",
+								"{{category}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Size",
+			"item": [
+				{
+					"name": "Post_size",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"responseBody = pm.response.json(); // Assuming the response is in JSON format\r",
+									"\r",
+									"if (responseBody && responseBody.id) {\r",
+									"    // Set the value of a variable named \"idVariable\" to the \"id\" from the response\r",
+									"    pm.environment.set('size', responseBody.id);\r",
+									"} else {\r",
+									"    console.error('Response does not contain a valid \"id\".');\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"{{$randomAdjective}}\", \"value\": \"{{$randomInt}}\" }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/sizes",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"sizes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_size",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/sizes/{{size}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"sizes",
+								"{{size}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_sizes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/sizes",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"sizes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch_size",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6Imluc18yVlpQNGpGemhvc08wV3hVd21mcUkyWDNMSGkiLCJ0eXAiOiJKV1QifQ.eyJhenAiOiJodHRwczovL2Vjb21tZXJjZS1kYXNoYm9hcmQta29obC52ZXJjZWwuYXBwIiwiZXhwIjoyMDEyOTk0MDgyLCJpYXQiOjE2OTc2MzQwODIsImlzcyI6Imh0dHBzOi8vcmVsaWV2ZWQtbW9sbHktMjEuY2xlcmsuYWNjb3VudHMuZGV2IiwianRpIjoiNjdjZGViMmU4MjQzY2E4MWNhNDgiLCJuYmYiOjE2OTc2MzQwNzcsInN1YiI6InVzZXJfMldDTmJ2TUkzZGVMeWEwcUJjNUdTM0lWdkNqIn0.n2kXQQBp2FWdgWSoI_tTw1tvPm01JUWPYAVCsIh74Qp0upcM9DI6RBmp4GuAleBBRLtX6ww5M6n9CZsrsKnO9LOCwdg1mR_B8bd0I7A-IvkqDwUuU4CxzPeQmSRBt74yI8DbZBByC05qc4N9P1zq9w0yVkD0S1tCNJ-4NDj0LRPRNqdbwKPh8WNyCrFO8RCspYqVr0vGOFQSYEkFfBX0RMSXAbGCYJsC24bbUd1JTDcC_AbVaLMdfK1y0lYUlcadGS6bz9abRqAA05enr5C_86gp9nwJgI1Mo-Df85OenDPcIjKS-QU5No7ODjqYGVSB7dj3ylUxnFpi6tAk21j2pw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"NewValue\", \"value\": \"15\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/sizes/{{size}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"sizes",
+								"{{size}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_size",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/sizes/{{size}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"sizes",
+								"{{size}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Color",
+			"item": [
+				{
+					"name": "Post_color",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"responseBody = pm.response.json(); // Assuming the response is in JSON format\r",
+									"\r",
+									"if (responseBody && responseBody.id) {\r",
+									"    // Set the value of a variable named \"idVariable\" to the \"id\" from the response\r",
+									"    pm.environment.set('color', responseBody.id);\r",
+									"} else {\r",
+									"    console.error('Response does not contain a valid \"id\".');\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{$randomColor}}\",\r\n    \"value\":\"{{$randomHexColor}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/colors/",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"colors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_color",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/colors/{{color}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"colors",
+								"{{color}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_colors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/colors/",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"colors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch_color",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"name\":\"{{$randomColor}}\",\r\n    \"value\":\"{{$randomHexColor}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/colors/{{color}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"colors",
+								"{{color}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/colors/{{color}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"colors",
+								"{{color}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Post_product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"responseBody = pm.response.json(); // Assuming the response is in JSON format\r",
+									"\r",
+									"if (responseBody && responseBody.id) {\r",
+									"    // Set the value of a variable named \"idVariable\" to the \"id\" from the response\r",
+									"    pm.environment.set('product', responseBody.id);\r",
+									"} else {\r",
+									"    console.error('Response does not contain a valid \"id\".');\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"{{$randomProduct}}\",\r\n   \"img\": \"bootsURL\",\r\n   \"description\": \"{{$randomCatchPhrase}}\",\r\n   \"categoryId\": \"{{category}}\",\r\n   \"price\": {{$randomInt}},\r\n   \"isFeatured\": {{$randomBoolean}},\r\n   \"isArchived\": {{$randomBoolean}},\r\n   \"sizeId\": \"{{size}}\",\r\n   \"colorId\": \"{{color}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/products",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/products/{{product}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"products",
+								"{{product}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/products",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch_product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomProductName}}\",\r\n    \"img\": \"bootsURL\",\r\n    \"description\": \"Open-architected tangible policy\",\r\n    \"storeId\": \"16f44d74-f9d8-4e20-90e3-99324abf755d\",\r\n    \"categoryId\": \"60b6df3a-48a6-4659-9db2-10e29d0138e0\",\r\n    \"sizeId\": \"0c30e336-c2b2-4f2c-b47d-0b45175bfab4\",\r\n    \"colorId\": \"90ddb655-272c-475f-b28a-17b74a94228a\",\r\n    \"price\": 9000,\r\n    \"isFeatured\": false,\r\n    \"isArchived\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/products/{{product}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"products",
+								"{{product}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/products/{{product}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"products",
+								"{{product}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "get_orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"responseBody = pm.response.json();\r",
+									"\r",
+									"// Check if the response is an array and contains at least one element\r",
+									"if (Array.isArray(responseBody) && responseBody.length > 0) {\r",
+									"    // Get the first \"id\" from the response\r",
+									"    const firstId = responseBody[0].id;\r",
+									"\r",
+									"    // Set the variable in Postman\r",
+									"    pm.environment.set('order', firstId);\r",
+									"} else {\r",
+									"    console.error('Response does not contain a valid \"id\".');\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/orders",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"responseBody = pm.response.json(); // Assuming the response is in JSON format\r",
+									"\r",
+									"if (responseBody && responseBody.id) {\r",
+									"    // Set the value of a variable named \"idVariable\" to the \"id\" from the response\r",
+									"    pm.environment.set('order', responseBody.id);\r",
+									"} else {\r",
+									"    console.error('Response does not contain a valid \"id\".');\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/orders/{{order}}",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"orders",
+								"{{order}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch_order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"isPaid\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hakim_livs}}{{dashboard_guid}}/orders/e1cf05e1-63fe-42ef-beb1-368b493c55c9",
+							"host": [
+								"{{hakim_livs}}{{dashboard_guid}}"
+							],
+							"path": [
+								"orders",
+								"e1cf05e1-63fe-42ef-beb1-368b493c55c9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
